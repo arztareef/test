@@ -1,0 +1,16 @@
+image: gitpod/workspace-full
+
+tasks:
+  - name: Setup Minecraft Server
+    command: |
+      sudo apt-get update
+      sudo apt-get install -y openjdk-17-jre
+      mkdir minecraft-server
+      cd minecraft-server
+      wget https://launcher.mojang.com/v1/objects/your_minecraft_server.jar -O server.jar
+      echo "eula=true" > eula.txt
+      java -Xmx1024M -Xms1024M -jar server.jar nogui
+
+ports:
+  - port: 25565
+    onOpen: open-preview
